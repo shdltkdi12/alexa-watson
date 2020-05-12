@@ -1,0 +1,232 @@
+{
+  "intents": [
+    {
+      "intent": "Welcome",
+      "examples": [
+        {
+          "text": "start skill"
+        },
+        {
+          "text": "Hey"
+        },
+        {
+          "text": "Watson Assistant"
+        },
+        {
+          "text": "Hey Watson"
+        },
+        {
+          "text": "Hello"
+        },
+        {
+          "text": "Hi"
+        }
+      ],
+      "description": "Welcome Intent"
+    },
+    {
+      "intent": "ClassTeacher",
+      "examples": [
+        {
+          "text": "teacher"
+        },
+        {
+          "text": "class teacher"
+        },
+        {
+          "text": "Who is our instructor?"
+        },
+        {
+          "text": "Who is our class instructor?"
+        },
+        {
+          "text": "instructor"
+        },
+        {
+          "text": "Who is our teacher?"
+        },
+        {
+          "text": "Who is our class teacher?"
+        }
+      ],
+      "description": "Who is the teacher for Cloud Computing?"
+    },
+    {
+      "intent": "GetGroupNames",
+      "examples": [
+        {
+          "text": "group members"
+        },
+        {
+          "text": "Who is in my group?"
+        },
+        {
+          "text": "Who are my team members?"
+        },
+        {
+          "text": "Who are my group members?"
+        },
+        {
+          "text": "team mates"
+        },
+        {
+          "text": "team members"
+        },
+        {
+          "text": "my group"
+        }
+      ],
+      "description": "Returns group members for group 2."
+    },
+    {
+      "intent": "GroupLeader",
+      "examples": [
+        {
+          "text": "Who is in charge of group 2?"
+        },
+        {
+          "text": "Who is my group leader?"
+        },
+        {
+          "text": "Who is our team leader?"
+        },
+        {
+          "text": "Team leader"
+        },
+        {
+          "text": "Group leader"
+        },
+        {
+          "text": "Who leads group 2?"
+        }
+      ],
+      "description": "Ask who the group leader is"
+    }
+  ],
+  "entities": [],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "Teacher",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Your class teacher is Professor Sardinas."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#ClassTeacher",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_5_1582140023939",
+      "previous_sibling": "node_8_1582139996080"
+    },
+    {
+      "type": "standard",
+      "title": "Group Members",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Your group members are Alexis, Cameron, Emma, Isaiah, Jake, and Kyle."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#GetGroupNames",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_6_1582140047762",
+      "previous_sibling": "node_5_1582140023939"
+    },
+    {
+      "type": "standard",
+      "title": "Group Leader",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Cameron is the leader of Group 2."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#GroupLeader",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_8_1582139996080",
+      "previous_sibling": "node_3_1582307660181"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't understand. You can try rephrasing."
+              },
+              {
+                "text": "Can you reword your statement? Im not understanding."
+              },
+              {
+                "text": "I didn't get your meaning."
+              },
+              {
+                "text": "Enter response variation."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_6_1582310057724",
+      "previous_sibling": "node_6_1582140047762"
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello, how can I help you?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome || #Welcome",
+      "dialog_node": "node_3_1582307660181"
+    }
+  ],
+  "counterexamples": [],
+  "learning_opt_out": false,
+  "name": "assignment2.1",
+  "language": "en",
+  "description": "HW2 for Cloud Computing."
+}
